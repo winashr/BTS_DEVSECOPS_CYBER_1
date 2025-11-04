@@ -1,24 +1,20 @@
-name: Gitleaks Scan
+name: Détection de secrets Gitleaks
 
-on:
-  push:
-    branches:
-      - main
-      - 'fix/**'
-  pull_request:
+on: [push]
 
 jobs:
   gitleaks:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Récupération du code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-      - name: Install Gitleaks
-        run: |
-          curl -sSL https://github.com/zricethezav/gitleaks/releases/latest/download/gitleaks_8.16.1_linux_x64 -o gitleaks
-          chmod +x gitleaks
-          sudo mv gitleaks /usr/local/bin/gitleaks
+      - name: Exécution de Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+name: Scan de sécurité Snyk
 
-      - name: Run Gitleaks scan
-        run: gitleaks detect --source . --no-git --exit-code 1
