@@ -1,0 +1,15 @@
+{
+  "name": "vuln-node-project",
+  "version": "1.0.0",
+  "description": "Projet volontairement vulnérable pour atelier",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "lodash": "4.17.20",
+    "serialize-javascript": "2.1.0",
+    "node-forge": "0.10.0"
+  }
+}
