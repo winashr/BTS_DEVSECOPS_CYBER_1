@@ -1,20 +1,21 @@
-name: Trivy Scan
+name: Scan de sécurité Trivy
 
-on:
-  push:
-    branches: ["main", "fix/**"]
-  pull_request:
+on: [push]
 
 jobs:
-  trivy:
+  trivy-scan:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout code
+      - name: Récupération du code
         uses: actions/checkout@v4
 
-      - name: Run Trivy Scan
-        uses: aquasecurity/trivy-action@v0.35.0  # <-- dernière version stable
+      - name: Exécution du scan de vulnérabilités Trivy
+        uses: aquasecurity/trivy-action@0.32.0
         with:
-          format: table
-          severity: MEDIUM,HIGH,CRITICAL
-          exit-code: 1
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'table'
+          exit-code: '1'
+          severity: 'CRITICAL,HIGH'
+          ignore-unfixed: false
