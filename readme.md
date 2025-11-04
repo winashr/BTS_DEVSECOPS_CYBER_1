@@ -1,6 +1,7 @@
 # 🕵️‍♀️ TP DevSecOps : Projet Node.js vulnérable
 
 ## Bienvenue !
+
 Cet exercice vous place dans la peau d’une équipe DevSecOps : votre mission est de scanner, détecter, corriger et documenter les vulnérabilités d’un petit projet Node.js volontairement vulnérable.
 Important : le dépôt contient des secrets factices (fichiers .env, private_key.pem) uniquement à des fins pédagogiques. Ne publiez jamais de vraies clés dans un dépôt public.
 
@@ -55,7 +56,7 @@ Puis ouvrir http://localhost:3000
 
 Vous devrez exécuter les scans localement et vérifier les runs GitHub Actions sur vos PRs.
 
-Trivy  |  Snyk  |  Gitleaks
+Trivy | Snyk | Gitleaks
 
 Les workflows GitHub Actions (Trivy / Snyk / Gitleaks) sont configurés pour s’exécuter sur un push. Poussez vos commits et observez les résultats. Vos corrections doivent permettre aux jobs de sécurité de passer.
 
@@ -86,20 +87,21 @@ Votre dépôt rendu doit contenir au minimum :
 3. .gitignore mis à jour si nécessaire (les secrets ne doivent plus être suivis).
 
 4. CVE_TABLE.md à la racine - obligatoire - contenant pour chaque vulnérabilité :
-    - nom / description courte
-    - identifiant CVE ou advisory (ou référence)
-    - correctif appliqué (commande exacte et version cible)
-    - niveau de gravité (CVSS / label)
-    - correspondance OWASP Top-10 (2021)
-    - preuve de la correction (log CI ou capture)
 
-    Un commit séparé montrant la suppression des secrets du suivi Git (ex : git rm --cached .env private_key.pem) et un message de commit explicite.
+   - nom / description courte
+   - identifiant CVE ou advisory (ou référence)
+   - correctif appliqué (commande exacte et version cible)
+   - niveau de gravité (CVSS / label)
+   - correspondance OWASP Top-10 (2021)
+   - preuve de la correction (log CI ou capture)
 
-5. Il faut les fichiers de votre CI :
-     - gitleaks.yml
-     - snyk-scan.yml
-     - trivy-scan.yml
-   Ces fichiers devront être exécutés à chaque push et devront scanner votre projet.
+   Un commit séparé montrant la suppression des secrets du suivi Git (ex : git rm --cached .env private_key.pem) et un message de commit explicite.
+
+5. Il faut les fichiers de votre CI (présents dans .github/workflows/):
+   - gitleaks.yml
+   - snyk-scan.yml
+   - trivy-scan.yml
+     Ces fichiers devront être exécutés à chaque push et devront scanner votre projet.
 
 ---
 
@@ -108,9 +110,9 @@ Votre dépôt rendu doit contenir au minimum :
 Créez CVE_TABLE.md avec un tableau clair. Exemple (à compléter par vos soins) :
 
 | Vulnérabilité Référence (CVE/advisory) | Correctif appliqué (commande / version) | Gravité (CVSS / label) | OWASP Top-10 (2021) |
-|---------|---------|----------|----------|
-|||||
-|||||
+| -------------------------------------- | --------------------------------------- | ---------------------- | ------------------- |
+|                                        |                                         |                        |                     |
+|                                        |                                         |                        |                     |
 
 Chaque ligne doit être renseignée.
 
