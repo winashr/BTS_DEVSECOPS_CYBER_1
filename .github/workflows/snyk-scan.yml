@@ -1,27 +1,19 @@
-name: Détection de vulnérabilités Snyk
+name: Snyk Scan
 
-on: [push, pull_request]
+on:
+  push:
+    branches: ["main", "fix/**"]
+  pull_request:
 
 jobs:
   snyk:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Récupération du code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Configurer Node.js
-        uses: actions/setup-node@v4
+      - name: Run Snyk test
+        uses: snyk/actions@master
         with:
-          node-version: 20
-
-      - name: Exécution du scan Snyk
-        uses: snyk/actions/setup@v1
-        with:
-          token: ${{ secrets.SNYK_TOKEN }}
-      
-      - name: Lancer Snyk test
-        run: snyk test --all-projects --severity-threshold=medium
-
-      - name: Monitor Snyk
-        run: snyk monitor --all-projects
+          command: test --all-projects --severity-threshold=medium
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
