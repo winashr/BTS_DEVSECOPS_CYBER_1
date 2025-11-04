@@ -73,7 +73,7 @@ trivy fs .
 ```
 
 # Source:
-![Résultat du scan Trivy](trivyscan.png)
+![Résultat du scan Trivy](trivyscreen.png)
 
 ## 2️⃣ Résumé du scan
 
