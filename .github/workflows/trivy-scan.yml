@@ -14,9 +14,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install Trivy
-        run: |
-          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh
-
       - name: Run Trivy scan
-        run: trivy fs --exit-code 1 --severity MEDIUM,HIGH,CRITICAL .
+        uses: aquasecurity/trivy-action@v2
+        with:
+          scan-type: fs
+          severity: MEDIUM,HIGH,CRITICAL
+          exit-code: 1
